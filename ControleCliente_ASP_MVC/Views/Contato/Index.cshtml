@@ -1,0 +1,45 @@
+﻿@model List<Contato>
+
+@{
+    ViewData["Title"] = "Listagem Contato";
+}
+
+<div class="text-center">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a role="button" class="btn btn-success"  
+            asp-area="" asp-controller="Contato" 
+            asp-action="Criar" >Novo Contato</a>
+    </div>
+    <br />
+    <h1 class="display-4">Listagem de Contatos</h1>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+          <th scope="col">Telefone</th>
+           <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+            @foreach (var item in Model)
+            {
+              <tr>
+                  <th scope="row">@Html.DisplayFor(modelItem => item.Id)</th>
+                  <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                  <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                  <td>@Html.DisplayFor(modelItem => item.Telefone)</td>
+                  <td>
+                      <a role="button" class="btn btn-primary btn-sm" asp-route-id="@item.Id" asp-controller="Contato" asp-action="Edit">Editar</a>
+                      <a role="button" class="btn btn-danger btn-sm" asp-route-id="@item.Id" asp-controller="Contato" asp-action="ApagarConfirmacao">Excluir</a>
+                  </td>
+            </tr>  
+            }
+            
+        
+      </tbody>
+    </table>
+</div>
